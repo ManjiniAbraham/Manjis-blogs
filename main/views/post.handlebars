@@ -1,0 +1,47 @@
+<main>
+    <div class="card border-primary mb-3 w-100">
+      <div class="card-body text-primary">
+       
+        <blockquote class="blockquote mb-6">  
+          <h4 class="mb-3">{{post.title}}</h4>       
+          <footer class="blockquote-footer">
+              <small class="text-muted">
+                Posted by {{post.user.username}} on <cite>{{format_date post.date_created}}</cite>
+              </small>
+          </footer>
+        </blockquote>
+        <p class="card-text">{{post.body}}</p>
+      </div>
+    </div>
+
+    {{#if logged_in}}
+    <h5 class="card-header mb-3">Comment</h5>
+      <form class="card-body new-post-form" id="new-post-form">
+        <div class="mb-3">
+          <textarea id="comment-content" name="content" class="form-control" rows="5"></textarea>
+        </div>
+        <button class="btn btn-primary btn-sm comment-btn" type="button">Add Comment</button>
+        <div class="current-post-id invisible">{{post.id}}</div>
+      </form>
+    {{/if}}
+
+    {{#if post.comments.length}}
+    <h5>Comments</h5>
+      {{#each post.comments as |comment| }}
+      <div class="card border-secondary mb-3 w-100">
+        <div class="card-header">
+          <small class="text-muted">
+            by {{comment.user.username}} on <cite>{{format_date comment.date_created}}</cite>
+          </small>
+        </div>
+        <div class="card-body text-secondary">
+          <p class="card-text">{{comment.body}}</p>
+        </div>
+      </div>
+      {{/each}}
+    {{/if}}
+</main>
+
+{{#if logged_in}}
+<script src="/js/comment-post.js"></script>
+{{/if}}

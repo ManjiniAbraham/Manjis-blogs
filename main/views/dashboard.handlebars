@@ -1,0 +1,18 @@
+<main>
+  {{#if blogPosts.length}}
+  <h4>Your Posts</h4><a href="/new-post" class="btn btn-primary my-2">New Post</a>
+    {{#each blogPosts as |post| }}
+      <div class="card border-primary mb-3 w-100">
+        <div class="card-body text-primary">
+          <h5 class="card-title"><a href="/edit/{{post.id}}">{{post.title}}</a></h5>
+          <p class="card-text">{{post.body}}</p>
+        </div>
+        <div class="card-footer">
+             <small class="text-muted">Created on <cite>{{format_date post.date_created}}</cite></small>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+     <p>No posts found.</p>
+  {{/if}}
+</main>
