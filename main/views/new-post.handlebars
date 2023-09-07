@@ -1,5 +1,7 @@
+{{#if logged_in}}
+
 <div class="card">
-  <h4 class="card-header">New Post</h4>
+  <h5 class="card-header bg-darkorange text-light">New Post</h5>
   <form class="card-body new-post-form" id="new-post-form">
     <div class="mb-3">
       <label for="post-title" class="form-label">Title</label>
@@ -9,8 +11,9 @@
       <label class="form-label" for="content">Content</label>
       <textarea id="post-content" name="content" class="form-control" rows="5"></textarea>
     </div>
-    <button class="w-25 btn btn-primary btn-lg" type="submit">Creat New Post</button>
+    <button class="btn btn-primary" type="submit">Creat New Post</button>
   </form>
 </div>
 
 <script src="/js/add-post.js"></script>
+{{/if}}

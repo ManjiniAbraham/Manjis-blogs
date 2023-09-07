@@ -1,15 +1,12 @@
 <main>
     <div class="card border-primary mb-3 w-100">
+      <div class="card-header bg-darkorange text-light d-flex align-items-center">
+        <h4 class="mb-0">
+          {{post.title}}
+        </h5>
+        <small class="ms-auto">Posted by {{post.user.username}} on <cite>{{format_date post.date_created}}</cite></small>
+      </div>
       <div class="card-body text-primary">
-       
-        <blockquote class="blockquote mb-6">  
-          <h4 class="mb-3">{{post.title}}</h4>       
-          <footer class="blockquote-footer">
-              <small class="text-muted">
-                Posted by {{post.user.username}} on <cite>{{format_date post.date_created}}</cite>
-              </small>
-          </footer>
-        </blockquote>
         <p class="card-text">{{post.body}}</p>
       </div>
     </div>

@@ -1,14 +1,16 @@
 <main>
   {{#if blogPosts.length}}
-  <h4>All Posts</h4>
+  <h4 class="mb-3">All Posts</h4>
     {{#each blogPosts as |post| }}
       <div class="card border-primary mb-3 w-100">
-        <div class="card-body text-primary">
-          <h5 class="card-title"><a href="/posts/{{post.id}}">{{post.title}}</a></h5>
-          <p class="card-text">{{post.body}}</p>
+        <div class="card-header bg-darkorange text-light d-flex align-items-center">
+          <h5>
+            <a href="/posts/{{post.id}}" class="link-light link-underline link-underline-opacity-0">{{post.title}}</a>
+          </h5>
+          <small class="ms-auto">Posted by {{post.user.username}} on <cite>{{format_date post.date_created}}</cite></small>
         </div>
-        <div class="card-footer">
-             <small class="text-muted">Posted by {{post.user.username}} on <cite>{{format_date post.date_created}}</cite></small>
+        <div class="card-body text-primary">
+          <p class="card-text">{{post.body}}</p>
         </div>
       </div>
     {{/each}}
