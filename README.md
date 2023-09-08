@@ -12,6 +12,7 @@ The project is to build a CMS-style blog site similar to a Wordpress site, where
 - [Usage](#usage)
 - [License](#license)
 - [Credits](#credits)
+- [Features](#features)
 
 ## Installation
 

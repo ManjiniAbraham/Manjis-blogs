@@ -14,7 +14,17 @@ const signupFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert(response.statusText);
+        const responseData = await response.json();
+        if (responseData.err) {
+          // Handle the specific password length validation error here
+          alert(responseData.err);
+        } else if (responseData.errors) {
+          // Handle other validation errors here
+          console.error(responseData.errors);
+        } else {
+          // Handle other error cases
+          alert('An error occurred during registration.');
+        }
       }
     }
   };

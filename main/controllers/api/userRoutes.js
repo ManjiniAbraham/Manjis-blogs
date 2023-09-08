@@ -10,13 +10,28 @@ router.post('/signup', async (req, res) => {
     });
 
     req.session.save(() => {
-      req.session.loggedIn = true;
-
+      req.session.user_id = dbUserData.id;
+      req.session.logged_in = true;
       res.status(200).json(dbUserData);
     });
   } catch (err) {
+    if (err.name === 'SequelizeValidationError') {
+      // Check if the error is specifically related to password length validation
+      const pwdError = err.errors.find(
+        (e) => e.path === 'password' && e.validatorKey === 'len'
+      );
+      if (pwdError) {
+        // If it's a password length validation error, send the error message
+        res.status(400).json({ err: pwdError.message });
+      } else {
+        // Handle other validation errors
+        const errorMessages = err.errors.map((e) => e.message);
+        res.status(400).json({ errors: errorMessages });
+      }
+    } else {
     console.log(err);
     res.status(500).json(err);
+    }
   }
 });
 
