@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../models');
+const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Route for getting all posts belonging to the user for the dasboard - can be accessed only when logged in
@@ -9,6 +9,9 @@ router.get('/', withAuth, async (req, res) => {
             where: {
                 user_id: req.session.user_id
             },
+            include: [{
+                model: User
+            }],
             order: [["date_created", "DESC"]],
         });
 
